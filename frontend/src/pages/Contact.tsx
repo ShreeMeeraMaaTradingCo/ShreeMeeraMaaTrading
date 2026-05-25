@@ -48,35 +48,6 @@ export default function Contact() {
     }));
   };
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   const isEmpty = Object.values(formData).some(
-  //     (value) => value.trim() === ""
-  //   );
-
-  //   if (isEmpty) {
-  //     setFormStatus("Please fill all required fields.");
-  //     return;
-  //   }
-
-  //   setFormStatus("Thank you! Your message has been sent successfully.");
-
-  //   setFormData({
-  //     name: "",
-  //     email: "",
-  //     company: "",
-  //     country: "",
-  //     phone: "",
-  //     subject: "",
-  //     quantity: "",
-  //     packaging: "",
-  //     message: "",
-  //   });
-
-  //   setTimeout(() => setFormStatus(""), 5000);
-  // };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
