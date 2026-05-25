@@ -19,15 +19,17 @@
   background: white;
 }
 
+/* ===== LAYOUT ===== */
 .contact-container {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 4rem;
-  align-items: start;
+  align-items: stretch;
 }
 
+/* ===== LEFT SECTION ===== */
 .contact-info {
   animation: fadeInLeft 1s ease;
 }
@@ -88,6 +90,7 @@
   line-height: 1.4;
 }
 
+/* ===== FORM ===== */
 .contact-form-wrapper {
   background: var(--background);
   padding: 2rem;
@@ -179,6 +182,7 @@
   text-align: center;
 }
 
+/* ===== MAP ===== */
 .map-section {
   padding: 2rem;
   background: white;
@@ -221,21 +225,47 @@
   opacity: 1;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 968px) {
   .contact-container {
     grid-template-columns: 1fr;
     gap: 3rem;
     padding: 0 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-info,
+  .map-container,
+  .contact-form-wrapper {
+    text-align: center;
+    width: 100%;
   }
 
   .contact-details {
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
   }
 
   .contact-detail {
+    width: 100%;
+    min-height: 140px;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+  }
+
+  .form-group {
+    align-items: center;
+    width: 100%;
+  }
+
+  .form-group label {
     text-align: center;
+    width: 100%;
   }
 
   .form-group input,
@@ -243,6 +273,8 @@
   .form-group textarea {
     width: 100%;
     max-width: 500px;
+    margin: 0 auto;
+    display: block;
   }
 
   .submit-btn {
@@ -251,8 +283,21 @@
     margin: 1rem auto 0;
   }
 
+  .map-container {
+    padding: 0 1rem;
+  }
+
   .map-wrapper {
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
+    border-radius: 16px;
+  }
+
+  .map-wrapper iframe {
+    width: 100% !important;
+    height: 280px;
+    display: block;
   }
 }
 
@@ -278,72 +323,17 @@
     align-items: center;
   }
 
-  .map-wrapper iframe {
-    height: 220px;
-  }
-}
-
-@media (max-width: 968px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-    padding: 0 1.5rem;
-    gap: 3rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .contact-info,
-  .map-container,
-  .contact-form-wrapper {
-    text-align: center;
-    width: 100%;
-  }
-
-  .map-wrapper {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+  .map-container {
+    padding: 0 0.8rem;
   }
 
   .map-wrapper iframe {
-    width: 100% !important;
-    height: 280px;
-    display: block;
-  }
-
-  /* CONTACT BOXES */
-  .contact-details {
-    display: grid;
-    grid-template-columns: 1fr; /* IMPORTANT */
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .contact-detail {
-    width: 100%;
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* FORM FIX */
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    max-width: 500px;
-  }
-
-  .submit-btn {
-    width: 100%;
-    max-width: 300px;
-    margin: 1rem auto 0;
+    height: 420px;
+    border-radius: 14px;
   }
 }
 
-/* ANIMATIONS (UNCHANGED) */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
