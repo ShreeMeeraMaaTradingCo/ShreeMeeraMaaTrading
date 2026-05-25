@@ -94,7 +94,7 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-          to: "admin@shreemeeramaa.com",
+          to: "admin@shreemeeramaatrading.com",
           subject: `New Inquiry: ${formData.subject} from ${formData.company}`,
           from_name: formData.name,
           name: formData.name,
