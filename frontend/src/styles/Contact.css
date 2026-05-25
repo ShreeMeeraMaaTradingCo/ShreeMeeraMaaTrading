@@ -19,7 +19,6 @@
   background: white;
 }
 
-/* ===== LAYOUT ===== */
 .contact-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -29,7 +28,6 @@
   align-items: stretch;
 }
 
-/* ===== LEFT SECTION ===== */
 .contact-info {
   animation: fadeInLeft 1s ease;
 }
@@ -90,7 +88,6 @@
   line-height: 1.4;
 }
 
-/* ===== FORM ===== */
 .contact-form-wrapper {
   background: var(--background);
   padding: 2rem;
@@ -182,7 +179,6 @@
   text-align: center;
 }
 
-/* ===== MAP ===== */
 .map-section {
   padding: 2rem;
   background: white;
@@ -225,7 +221,6 @@
   opacity: 1;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 968px) {
   .contact-container {
     grid-template-columns: 1fr;
@@ -333,7 +328,6 @@
   }
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -48,33 +48,82 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   const isEmpty = Object.values(formData).some(
+  //     (value) => value.trim() === ""
+  //   );
+
+  //   if (isEmpty) {
+  //     setFormStatus("Please fill all required fields.");
+  //     return;
+  //   }
+
+  //   setFormStatus("Thank you! Your message has been sent successfully.");
+
+  //   setFormData({
+  //     name: "",
+  //     email: "",
+  //     company: "",
+  //     country: "",
+  //     phone: "",
+  //     subject: "",
+  //     quantity: "",
+  //     packaging: "",
+  //     message: "",
+  //   });
+
+  //   setTimeout(() => setFormStatus(""), 5000);
+  // };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const isEmpty = Object.values(formData).some(
-      (value) => value.trim() === ""
-    );
-
+    const isEmpty = Object.values(formData).some((value) => value.trim() === "");
     if (isEmpty) {
       setFormStatus("Please fill all required fields.");
       return;
     }
 
-    setFormStatus("Thank you! Your message has been sent successfully.");
+    setFormStatus("Sending...");
 
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      country: "",
-      phone: "",
-      subject: "",
-      quantity: "",
-      packaging: "",
-      message: "",
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: `New Inquiry: ${formData.subject} from ${formData.company}`,
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          country: formData.country,
+          phone: formData.phone,
+          product: formData.subject,
+          quantity: formData.quantity,
+          packaging: formData.packaging,
+          message: formData.message,
+        }),
+      });
 
-    setTimeout(() => setFormStatus(""), 5000);
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus("Thank you! Your message has been sent successfully.");
+        setFormData({
+          name: "", email: "", company: "", country: "",
+          phone: "", subject: "", quantity: "", packaging: "", message: "",
+        });
+      } else {
+        setFormStatus("Something went wrong. Please try again.");
+      }
+    } catch {
+      setFormStatus("Network error. Please check your connection.");
+    }
+
+    setTimeout(() => setFormStatus(""), 6000);
   };
 
   return (

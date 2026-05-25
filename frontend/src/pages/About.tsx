@@ -187,7 +187,7 @@ export default function About() {
 
       <section className="stats-section">
         <div className="history certificate-box">
-          <h2 className="section-title">Our Certificates</h2>
+          <h2 className="section-title">Our Licenses</h2>
 
           <div className="certificates-wrapper">
             <div className="certificates-track">
