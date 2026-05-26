@@ -96,7 +96,7 @@ export default function Footer() {
 
                 <li className="footer-email">
                   <img src={mail} alt="Mail" />
-                  sarthak.a@shreemeeramaatrading.com
+                  sarthak@shreemeeramaatrading.com
                 </li>
               </ul>
 
@@ -118,7 +118,7 @@ export default function Footer() {
 
                 <li className="footer-email">
                   <img src={mail} alt="Mail" />
-                  mitisha.s@shreemeramaatrading.com
+                  mitisha@shreemeramaatrading.com
                 </li>
               </ul>
 
