@@ -123,7 +123,7 @@ export default function Contact() {
                 <div className="detail-icon">📧</div>
                 <div className="detail-content">
                   <h3>Email</h3>
-                  <p>shreemeeramaatrading@gmail.com</p>
+                  <p>admin@shreemeeramaatrading.com</p>
                 </div>
               </div>
 
