@@ -184,12 +184,12 @@ export default function Contact() {
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <Label text="Full Name" htmlFor="name" required />
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" />
+                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Enter your Name" />
               </div>
 
               <div className="form-group">
                 <Label text="Company Name" htmlFor="company" required />
-                <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} required placeholder="XYZ Company" />
+                <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} required placeholder="Enter your Company Name" />
               </div>
 
               <div className="form-group">
@@ -228,12 +228,12 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <Label text="Quantity Required" htmlFor="quantity" required />
+                <Label text="Quantity Required" htmlFor="quantity" />
                 <input type="text" id="quantity" name="quantity" value={formData.quantity} onChange={handleChange} required placeholder="e.g. 50kg, 10 tons, 100 bags" />
               </div>
 
               <div className="form-group">
-                <Label text="Packaging Preferences" htmlFor="packaging" required />
+                <Label text="Packaging Preferences" htmlFor="packaging" />
                 <input type="text" id="packaging" name="packaging" value={formData.packaging} onChange={handleChange} required placeholder="e.g. 50kg bags, bulk, custom packing" />
               </div>
 
