@@ -7,12 +7,11 @@
   padding: 4rem 2rem 0 2rem;
   margin: 0;
   margin-top: 80px;
-  background: linear-gradient(
-    135deg,
-    var(--background) 0%,
-    #ffeee0 100%
-  );
+  background: linear-gradient(135deg,
+      var(--background) 0%,
+      #ffeee0 100%);
 }
+
 .hero-content {
   animation: fadeInLeft 1s ease;
 }
@@ -52,11 +51,9 @@
 }
 
 .btn-primary {
-  background: linear-gradient(
-    135deg,
-    var(--primary-orange) 0%,
-    var(--peach) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--primary-orange) 0%,
+      var(--peach) 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(255, 155, 69, 0.3);
 }
@@ -118,6 +115,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -155,6 +153,7 @@
     opacity: 0;
     transform: scale(1.1);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -183,12 +182,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.5) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.5) 60%,
+      transparent 100%);
   padding: 3.5rem 3rem 2.5rem;
   color: white;
   transform: translateY(30px);
@@ -223,42 +220,49 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--brown);
+
+  background: transparent;
   border: none;
-  width: 55px;
-  height: 55px;
+
+  width: 50px;
+  height: 70px;
+
   cursor: pointer;
-  font-size: 1.8rem;
-  border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
-  opacity: 0;
+  font-size: 3rem;
+  font-weight: 300;
+
+  color: rgba(255, 238, 224, 0.9);
+
+  z-index: 5;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+
+  padding: 0;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
 }
 
-.slideshow-container:hover .slide-btn {
-  opacity: 1;
-}
-
-.slide-btn:hover {
-  background: var(--primary-orange);
-  color: white;
-  transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 6px 30px rgba(255, 155, 69, 0.5);
-}
-
+/* Always visible */
 .slide-btn.prev {
-  left: 2rem;
+  left: 1.2rem;
 }
 
 .slide-btn.next {
-  right: 2rem;
+  right: 1.2rem;
 }
+
+/* Hover */
+.slide-btn:hover {
+  color: var(--primary-orange);
+  transform: translateY(-50%);
+  text-shadow: 0 0 12px rgba(255, 155, 69, 0.4);
+}
+
 
 .features-section {
   padding: 3rem 2rem;
@@ -288,11 +292,9 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-orange),
-    var(--peach)
-  );
+  background: linear-gradient(90deg,
+      var(--primary-orange),
+      var(--peach));
   border-radius: 2px;
 }
 
@@ -319,7 +321,7 @@
   border-color: var(--primary-orange);
 }
 
-.feature-icon{
+.feature-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
   display: inline-block;
@@ -347,11 +349,9 @@
 
 .about-preview-section {
   padding: 2rem 2rem;
-  background: linear-gradient(
-    135deg,
-    var(--background) 0%,
-    #ffeee0 100%
-  );
+  background: linear-gradient(135deg,
+      var(--background) 0%,
+      #ffeee0 100%);
 }
 
 .about-preview-container {
@@ -488,11 +488,9 @@
 
 .cta-section {
   padding: 2rem 2rem;
-  background: linear-gradient(
-    135deg,
-    var(--primary-orange) 0%,
-    var(--peach) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--primary-orange) 0%,
+      var(--peach) 100%);
   text-align: center;
 }
 
@@ -533,6 +531,7 @@
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -544,6 +543,7 @@
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -555,6 +555,7 @@
     opacity: 0;
     transform: translateY(50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -566,6 +567,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -576,36 +578,43 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes bounce {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes pulseGlow {
+
   0%,
   100% {
     box-shadow: 0 0 15px rgba(255, 155, 69, 0.6);
   }
+
   50% {
     box-shadow: 0 0 25px rgba(255, 155, 69, 0.9);
   }
@@ -618,12 +627,10 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(
-    135deg,
-    var(--primary-orange),
-    var(--peach),
-    var(--primary-orange)
-  );
+  background: linear-gradient(135deg,
+      var(--primary-orange),
+      var(--peach),
+      var(--primary-orange));
   border-radius: 27px;
   z-index: -1;
   opacity: 0;
@@ -634,24 +641,24 @@
   opacity: 0.3;
 }
 
-.home-page > section {
+.home-page>section {
   animation: fadeInUp 0.6s ease-out;
   animation-fill-mode: both;
 }
 
-.home-page > section:nth-child(1) {
+.home-page>section:nth-child(1) {
   animation-delay: 0.1s;
 }
 
-.home-page > section:nth-child(2) {
+.home-page>section:nth-child(2) {
   animation-delay: 0.2s;
 }
 
-.home-page > section:nth-child(3) {
+.home-page>section:nth-child(3) {
   animation-delay: 0.3s;
 }
 
-.home-page > section:nth-child(4) {
+.home-page>section:nth-child(4) {
   animation-delay: 0.4s;
 }
 
@@ -785,6 +792,20 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+
+  .slide-btn {
+    width: 40px;
+    height: 60px;
+    font-size: 2.4rem;
+  }
+
+  .slide-btn.prev {
+    left: 0.5rem;
+  }
+
+  .slide-btn.next {
+    right: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -832,17 +853,17 @@
   }
 
   .slide-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    width: 35px;
+    height: 55px;
+    font-size: 2rem;
   }
 
   .slide-btn.prev {
-    left: 0.8rem;
+    left: 0.3rem;
   }
 
   .slide-btn.next {
-    right: 0.8rem;
+    right: 0.3rem;
   }
 
   .features-grid {

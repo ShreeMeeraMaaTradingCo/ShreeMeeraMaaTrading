@@ -131,12 +131,26 @@ export default function Home() {
             ))}
           </div>
 
-          <button className="slide-btn prev" onClick={prevSlide}>
-            &#10094;
-          </button>
-          <button className="slide-btn next" onClick={nextSlide}>
-            &#10095;
-          </button>
+          {currentSlide > 0 && (
+            <button
+              className="slide-btn prev"
+              onClick={prevSlide}
+              aria-label="Previous slide"
+            >
+              &#10094;
+            </button>
+          )}
+
+          {currentSlide < grains.length - 1 && (
+            <button
+              className="slide-btn next"
+              onClick={nextSlide}
+              aria-label="Next slide"
+            >
+              &#10095;
+            </button>
+          )}
+
         </div>
       </section>
 
@@ -203,9 +217,6 @@ export default function Home() {
       <section className="history-section">
         <div className="history">
           <h2 className="section-title">Our Global Presence</h2>
-          {/* <p className="history-story-text">
-            Our Products are present in - 
-          </p> */}
           <img src={global_presence} alt="Global Presence" className="global-presence-img" />
         </div>
       </section>
