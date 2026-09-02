@@ -52,7 +52,7 @@ export default function About() {
     {
       title: "Responsible Growth",
       description:
-        "We grow sustainably by focusing on long-term relationships and ethical business practices.",
+        "We grow sustainably in both international and domestic markets by focusing on long-term relationships and ethical business practices.",
       icon: growth,
     },
     {
@@ -144,22 +144,6 @@ export default function About() {
             reliable global export partner, focused on quality,
             integrity, and timely delivery.
           </p>
-        </div>
-      </section>
-      <section className="mission-section">
-        <div className="mission-container">
-          <div className="mission-card">
-            <h3 className="mission-title">Our Mission</h3>
-            <p className="mission-text">
-              To deliver high-quality agricultural products to global markets through reliable processes, honest commitments, and consistent performance - building long-term partnerships based on trust and values.
-            </p>
-          </div>
-          <div className="mission-card">
-            <h3 className="mission-title">Our Vision</h3>
-            <p className="mission-text">
-              To be globally recognized export partner for Indian agricultural products, known for quality, reliablity and integrity - while redefining International perceptions of Indian agri trade.
-            </p>
-          </div>
         </div>
       </section>
 

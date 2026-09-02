@@ -103,6 +103,16 @@
   transform: translateY(-5px);
 }
 
+.global-presence-img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  display: block;
+  margin: 2rem auto 2rem auto;
+  border-radius: 15px;
+}
+
+
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -377,6 +387,49 @@
 
 .preview-btn {
   margin-top: 10px;
+}
+
+.mission-section {
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--brown) 0%, #5a2f14 100%);
+}
+
+.mission-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.mission-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 155, 69, 0.3);
+  transition: all 0.4s ease;
+  animation: fadeInUp 1s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--primary-orange);
+}
+
+.mission-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+  margin-bottom: 1.5rem;
+}
+
+.mission-text {
+  color: white;
+  line-height: 1.8;
+  opacity: 0.95;
+  font-size: 1.1rem;
 }
 
 .testimonials-section {
@@ -679,6 +732,10 @@
     grid-template-columns: 1fr;
   }
 
+  .mission-container {
+    grid-template-columns: 1fr;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -787,7 +844,6 @@
   .slide-btn.next {
     right: 0.8rem;
   }
-
 
   .features-grid {
     grid-template-columns: 1fr;

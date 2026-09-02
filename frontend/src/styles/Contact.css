@@ -144,6 +144,15 @@
   transform: translateY(-2px);
 }
 
+.form-group input[list] {
+  border-right: none !important;
+}
+
+.form-group input[list]:focus {
+  border-right: none !important;
+  border-radius: 10px 0 0 10px !important;
+}
+
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
@@ -221,7 +230,39 @@
   opacity: 1;
 }
 
+.code-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 160px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 2px solid rgba(123, 64, 25, 0.2);
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: 0 5px 20px rgba(123, 64, 25, 0.15);
+}
+
+.code-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--brown);
+  font-size: 0.9rem;
+}
+
+.code-option:hover {
+  background: rgba(255, 155, 69, 0.15);
+}
+
 @media (max-width: 968px) {
+  .form-group > div {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+  }
+  
   .contact-container {
     grid-template-columns: 1fr;
     gap: 3rem;

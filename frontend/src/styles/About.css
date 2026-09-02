@@ -199,7 +199,7 @@
   line-height: 1.7;
 }
 
-.mission-section {
+/* .mission-section {
   padding: 3rem 2rem;
   background: linear-gradient(135deg, var(--brown) 0%, #5a2f14 100%);
 }
@@ -240,7 +240,7 @@
   line-height: 1.8;
   opacity: 0.95;
   font-size: 1.1rem;
-}
+} */
 
 .team-section {
   padding: 6rem 2rem;
@@ -379,9 +379,9 @@
     grid-template-columns: 1fr;
   }
 
-  .mission-container {
+  /* .mission-container {
     grid-template-columns: 1fr;
-  }
+  } */
 }
 
 @media (max-width: 480px) {

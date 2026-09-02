@@ -61,7 +61,7 @@ export default function Products() {
     },
     {
       id: 2,
-      name: "Desi Chana (Chickpeas)",
+      name: "Desi Chana",
       category: "Exports",
       description: "High-quality Desi chickpeas with strong nutritional value and consistent grading, suitable for global food industries.",
       image: desichana,
@@ -87,15 +87,15 @@ export default function Products() {
       image: moong,
       tables: [
         {
-          headers: ["Count per Ounce", "Grade Description"],
+          headers: ["Count (per ounce)", "Grade Description"],
           rows: [
             ["260 – 280", "Very small size, suitable for dal processing, milling, and industrial use"],
             ["240 – 260", "Smaller grains, mainly used for splitting (dal) and processing"],
             ["220 – 240", "Standard export quality, widely accepted in global markets"],
             ["200 – 220", "Premium grade, preferred for whole consumption and sprouts"]
           ],
-          note: "The sizing in MM is a standard approximation."
-        }
+        note:null
+      }
       ]
     },
     {
@@ -173,7 +173,7 @@ export default function Products() {
             ["Extra Bold", "38 - 40", "12 – 13 mm", "Premium quality, used in high-end retail and HORECA"],
             ["Jumbo", "36 - 38", "13 mm+", "Top-grade chickpeas with superior appearance"]
           ],
-          note: null
+          note: "The sizing in MM is a standard approximation."
         }
       ]
     },
@@ -191,7 +191,7 @@ export default function Products() {
             ["Medium", "110 – 140", "6.5 – 7.5 mm", "Standard import quality, balanced size and uniform appearance"],
             ["Bold / Large", "90 – 110", "> 7.5 mm", "Premium grade, preferred for retail packing and direct consumption"]
           ],
-          note: null
+          note: "The sizing in MM is a standard approximation."
         }
       ]
     },
@@ -203,13 +203,13 @@ export default function Products() {
       image: rajma,
       tables: [
         {
-          headers: ["Grade", "Count (per Ounce)", "Approx Size (mm)", "Common Types", "Description"],
+          headers: ["Grade", "Count (per ounce)", "Approx Size (mm)", "Common Types", "Description"],
           rows: [
             ["Small", "55 – 65", "< 10 mm", "DRK / Red Kidney", "Smaller beans, used for bulk processing and price - sensitive markets"],
             ["Medium", "45 – 55", "10 – 12 mm", "LSKB / DRK", "Standard import quality, good uniformity and cooking performance"],
             ["Bold / Large", "35 – 45", "> 12 mm", "LSKB (Preferred)", "Premium grade, ideal for retail packs and direct consumption"]
           ],
-          note: null
+          note: "The sizing in MM is a standard approximation."
         }
       ]
     },
@@ -240,6 +240,40 @@ export default function Products() {
           ? product.category.includes(selectedCategory)
           : product.category === selectedCategory
       );
+
+  const [brandIndex, setBrandIndex] = useState(0);
+  const brands = [brand1, brand2, brand3, brand4];
+  const [visibleBrands, setVisibleBrands] = useState(4);
+
+  useEffect(() => {
+    const updateVisibleBrands = () => {
+      if (window.innerWidth <= 768) {
+        setVisibleBrands(1);
+      } else if (window.innerWidth <= 1024) {
+        setVisibleBrands(2);
+      } else {
+        setVisibleBrands(4);
+      }
+    };
+
+    updateVisibleBrands();
+    window.addEventListener("resize", updateVisibleBrands);
+
+    return () =>
+      window.removeEventListener("resize", updateVisibleBrands);
+  }, []);
+
+  const nextBrands = () => {
+    if (brandIndex + visibleBrands < brands.length) {
+      setBrandIndex(brandIndex + visibleBrands);
+    }
+  };
+
+  const prevBrands = () => {
+    if (brandIndex - visibleBrands >= 0) {
+      setBrandIndex(brandIndex - visibleBrands);
+    }
+  };
 
   return (
     <div className="products-page">
@@ -326,26 +360,27 @@ export default function Products() {
 
             {selectedProduct.tables?.map((table, i) => (
               <div key={i} className="spec-table">
-
-                <table>
-                  <thead>
-                    <tr>
-                      {table.headers.map((h, idx) => (
-                        <th key={idx}>{h}</th>
-                      ))}
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {table.rows.map((row, rIdx) => (
-                      <tr key={rIdx}>
-                        {row.map((cell, cIdx) => (
-                          <td key={cIdx}>{cell}</td>
+                <div className="table-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        {table.headers.map((h, idx) => (
+                          <th key={idx}>{h}</th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+
+                    <tbody>
+                      {table.rows.map((row, rIdx) => (
+                        <tr key={rIdx}>
+                          {row.map((cell, cIdx) => (
+                            <td key={cIdx}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
 
                 {table.note && (
                   <p className="table-note">
@@ -364,16 +399,53 @@ export default function Products() {
         <div className="history certificate-box">
           <h2 className="section-title">Our Brands</h2>
 
-          <div className="certificates-wrapper">
-            <div className="certificates-track">
-              {[brand1, brand2, brand3, brand4,
-                brand1, brand2, brand3, brand4,
-                brand1, brand2, brand3, brand4
-              ].map((img, i) => (
-                <img key={i} src={img} alt="brand"
-                  className={img === brand4 ? "brand-img smmtc-logo" : "brand-img"} />
-              ))}
+          {/* <div className="brand-wrapper">
+            {[brand1, brand2, brand3, brand4
+              
+            ].map((img, i) => (
+              <img key={i} src={img} alt="brand"
+                className={img === brand4 ? "brand-img smmtc-logo" : "brand-img"} />
+            ))}
+          </div> */}
+          <div className="brand-slider">
+
+            {visibleBrands < 4 && (
+              <button
+                className="brand-nav prev"
+                onClick={prevBrands}
+                disabled={brandIndex === 0}
+              >
+                ❮
+              </button>
+            )}
+
+            <div className="brand-wrapper">
+              {brands
+                .slice(brandIndex, brandIndex + visibleBrands)
+                .map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt="brand"
+                    className={
+                      img === brand4
+                        ? "brand-img smmtc-logo"
+                        : "brand-img"
+                    }
+                  />
+                ))}
             </div>
+
+            {visibleBrands < 4 && (
+              <button
+                className="brand-nav next"
+                onClick={nextBrands}
+                disabled={brandIndex + visibleBrands >= brands.length}
+              >
+                ❯
+              </button>
+            )}
+
           </div>
         </div>
       </section>

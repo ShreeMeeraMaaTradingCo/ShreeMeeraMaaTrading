@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import "../styles/Contact.css";
-import { getNames } from "country-list";
+import { getNames, getCode } from "country-list";
+import { getCountries, getCountryCallingCode } from "libphonenumber-js";
 import type { FormEvent } from 'react';
 
 export default function Contact() {
@@ -9,6 +10,7 @@ export default function Contact() {
     email: "",
     company: "",
     country: "",
+    countryCode: "+91",
     phone: "",
     subject: "",
     quantity: "",
@@ -17,11 +19,17 @@ export default function Contact() {
   });
 
   const [formStatus, setFormStatus] = useState("");
+  const [showCodeDropdown, setShowCodeDropdown] = useState(false);
 
   const countries = useMemo(() => {
     const list = getNames().sort();
     return ["India", ...list.filter((c) => c !== "India")];
   }, []);
+
+  const countryCodes = getCountries().map((code) => ({
+    code,
+    dial: `+${getCountryCallingCode(code)}`,
+  })).sort((a, b) => a.dial.localeCompare(b.dial));
 
   const Label = ({
     text,
@@ -38,14 +46,26 @@ export default function Contact() {
   );
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+
+    if (name === "country") {
+      const isoCode = getCode(value);
+      const dial = isoCode
+        ? `+${getCountryCallingCode(isoCode as any)}`
+        : "";
+      setFormData((prev) => ({
+        ...prev,
+        country: value,
+        countryCode: dial,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -72,7 +92,8 @@ export default function Contact() {
           email: formData.email,
           company: formData.company,
           country: formData.country,
-          phone: formData.phone,
+          // phone: formData.phone,
+          phone: `${formData.countryCode} ${formData.phone}`,
           product: formData.subject,
           quantity: formData.quantity,
           packaging: formData.packaging,
@@ -84,8 +105,13 @@ export default function Contact() {
 
       if (result.success) {
         setFormStatus("Thank you! Your message has been sent successfully.");
+        // setFormData({
+        //   name: "", email: "", company: "", country: "",
+        //   phone: "", subject: "", quantity: "", packaging: "", message: "",
+        // });
         setFormData({
           name: "", email: "", company: "", country: "",
+          countryCode: "+91",
           phone: "", subject: "", quantity: "", packaging: "", message: "",
         });
       } else {
@@ -193,6 +219,11 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
+                <Label text="Email Address" htmlFor="email" required />
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
+              </div>
+
+              <div className="form-group">
                 <Label text="Country" htmlFor="country" required />
                 <select id="country" name="country" value={formData.country} onChange={handleChange} required>
                   <option value="">Select your country</option>
@@ -203,26 +234,67 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <Label text="Email Address" htmlFor="email" required />
-                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
-              </div>
-
-              <div className="form-group">
                 <Label text="Phone Number" htmlFor="phone" required />
-                <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+91 98765 43210" />
+                <div style={{ display: "flex", position: "relative" }}>
+                  <input
+                    type="text"
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setShowCodeDropdown(true);
+                    }}
+                    onFocus={() => setShowCodeDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowCodeDropdown(false), 200)}
+                    style={{ width: "110px", flexShrink: 0, borderRadius: "10px 0 0 10px", borderRight: "none" }}
+                    placeholder="+91"
+                    autoComplete="off"
+                  />
+                  {showCodeDropdown && (
+                    <div className="code-dropdown">
+                      {countryCodes
+                        .filter(({ dial }) => dial.includes(formData.countryCode))
+                        .map(({ code, dial }) => (
+                          <div
+                            key={code}
+                            className="code-option"
+                            onMouseDown={() => {
+                              setFormData((prev) => ({ ...prev, countryCode: dial }));
+                              setShowCodeDropdown(false);
+                            }}
+                          >
+                            {dial} ({code})
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    placeholder="98765 43210"
+                    style={{ flex: 1, borderRadius: "0 10px 10px 0" }}
+                  />
+                </div>
               </div>
 
               <div className="form-group">
                 <Label text="Product Interested In" htmlFor="subject" required />
                 <select id="subject" name="subject" value={formData.subject} onChange={handleChange} required>
                   <option value="">Select Product</option>
-                  <option>Kabuli Chickpeas</option>
+                  <option>Chawla (Black Eyed Beans)</option>
+                  <option>Chickpeas</option>
                   <option>Desi Chana</option>
-                  <option>Mustard</option>
+                  <option>Kabuli Chickpeas</option>
+                  <option>Moong (Green Gram)</option>
+                  <option>Mustard Seeds</option>
+                  <option>Peanuts</option>
+                  <option>Pulses</option>
+                  <option>Rajma (Kidney Beans)</option>
                   <option>Soyabean</option>
-                  <option>Moong</option>
-                  <option>Chawla</option>
-                  <option>Rajma</option>
                   <option>Other Agri Products</option>
                 </select>
               </div>

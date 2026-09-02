@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { ImageWithFallback } from "../components/ImageWithFallback";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../styles/Home.css";
-import moong from "../assets/hero_moong.png";
-import kabuliChana from "../assets/hero_kabulichana.png";
-import desiChana from "../assets/hero_desichana.png";
-import soyabean from "../assets/hero_soyabean.png";
-import mustard from "../assets/hero_mustard.png";
-import peanut from "../assets/hero_peanut.jpg";
+
+import moong from "../assets/Moong_Green_Gram.png";
+import kabuliChana from "../assets/Kabuli Chana.png";
+import desiChana from "../assets/Desi Chana.png";
+import soyabean from "../assets/Soyabean.png";
+import mustard from "../assets/Mustard Seeds.png";
+import peanut from "../assets/Peanuts.png";
+import chawla from "../assets/Chawla (Black Eyed Beans).png";
+import rajma from "../assets/Kidney Beans.png";
 
 import office from "../assets/office.png";
 import quality from "../assets/quality.png";
@@ -16,26 +19,16 @@ import experience from "../assets/experienced.png";
 import commitment from "../assets/commitment.png";
 import longterm from "../assets/longterm.png";
 import delivery from "../assets/fast-delivery.png";
-
+import global_presence from "../assets/global_map.png";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const grains = [
     {
-      name: "Moong",
-      description: "Premium quality moong dal, rich in protein and ideal for healthy everyday meals.",
-      image: moong,
-    },
-    {
-      name: "Soyabean",
-      description: "High-protein soyabeans perfect for cooking, oil extraction, and nutritious diets.",
-      image: soyabean,
-    },
-    {
-      name: "Mustard Seeds",
-      description: "Fresh and aromatic mustard seeds, ideal for tempering and adding flavor to dishes.",
-      image: mustard,
+      name: "Kabuli Chana",
+      description: "Large, premium kabuli chana ideal for curries, salads, and wholesome meals.",
+      image: kabuliChana,
     },
     {
       name: "Desi Chana",
@@ -43,23 +36,36 @@ export default function Home() {
       image: desiChana,
     },
     {
-      name: "Kabuli Chana",
-      description: "Large, premium kabuli chana ideal for curries, salads, and wholesome meals.",
-      image: kabuliChana,
+      name: "Moong (Green Gram)",
+      description: "Premium quality moong dal, rich in protein and ideal for healthy everyday meals.",
+      image: moong,
     },
     {
-      name: "Peanut",
+      name: "Mustard Seeds",
+      description: "Fresh and aromatic mustard seeds, ideal for tempering and adding flavor to dishes.",
+      image: mustard,
+    },
+    {
+      name: "Soyabean",
+      description: "High-protein soyabeans perfect for cooking, oil extraction, and nutritious diets.",
+      image: soyabean,
+    },
+    {
+      name: "Peanuts",
       description: "Crisp and delicious peanuts, perfect for snacks and various culinary applications.",
       image: peanut,
     },
+    {
+      name: "Chawla (Black Eyed Beans)",
+      description: "Nutritious Chawla rich in protein and fiber, perfect for daily healthy meals.",
+      image: chawla,
+    },
+    {
+      name: "Rajma (Kidney Beans)",
+      description: "Premium quality Rajma perfect for hearty meals and traditional dishes.",
+      image: rajma,
+    },
   ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % grains.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % grains.length);
@@ -124,7 +130,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          
+
           <button className="slide-btn prev" onClick={prevSlide}>
             &#10094;
           </button>
@@ -159,6 +165,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* mission and vision section */}
+      <section className="mission-section">
+        <div className="mission-container">
+          <div className="mission-card">
+            <h3 className="mission-title">Our Mission</h3>
+            <p className="mission-text">
+              To deliver high-quality agricultural products to global markets through reliable processes, honest commitments, and consistent performance - building long-term partnerships based on trust and values.
+            </p>
+          </div>
+          <div className="mission-card">
+            <h3 className="mission-title">Our Vision</h3>
+            <p className="mission-text">
+              To be globally recognized export partner for Indian agricultural products, known for quality, reliablity and integrity - while redefining International perceptions of Indian agri trade.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="features-section">
         <div className="container">
           <h2 className="section-title">Why Choose Us</h2>
@@ -166,7 +190,7 @@ export default function Home() {
             {features.map((feature, index) => (
               <div key={index} className="feature-card" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="feature-icon">
-                   <img src={feature.icon} alt={feature.title} />
+                  <img src={feature.icon} alt={feature.title} />
                 </div>
                 <h3 className="feature-title">{feature.title}</h3>
                 <p className="feature-description">{feature.description}</p>
@@ -175,6 +199,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="history-section">
+        <div className="history">
+          <h2 className="section-title">Our Global Presence</h2>
+          {/* <p className="history-story-text">
+            Our Products are present in - 
+          </p> */}
+          <img src={global_presence} alt="Global Presence" className="global-presence-img" />
+        </div>
+      </section>
+
       <section className="cta-section">
         <div className="cta-content">
           <h2 className="cta-title">Ready to Get Started?</h2>
